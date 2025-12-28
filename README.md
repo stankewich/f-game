@@ -27,10 +27,11 @@ Setting up development environment and beginning core match simulation developme
 ## Quick Start
 
 ### Prerequisites
-- Node.js 20+
-- Go 1.21+
-- Docker & Docker Compose
-- Make (optional, for convenience commands)
+- **Git** - [Инструкции по установке](docs/setup/GIT_SETUP.md)
+- **Node.js 20+** - [Инструкции по установке](docs/setup/NODEJS_SETUP.md)
+- **Go 1.21+** - [Инструкции по установке](docs/setup/GO_SETUP.md)
+- **Docker & Docker Compose** - [Инструкции по установке](docs/setup/DOCKER_SETUP.md)
+- **Make** (optional, for convenience commands)
 
 ### Setup Development Environment
 
