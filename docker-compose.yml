@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: fm_postgres
+    environment:
+      POSTGRES_DB: football_manager
+      POSTGRES_USER: fm_user
+      POSTGRES_PASSWORD: fm_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - fm_network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: fm_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - fm_network
+
+  # NATS Message Queue
+  nats:
+    image: nats:2.10-alpine
+    container_name: fm_nats
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    command: ["-js", "-m", "8222"]
+    networks:
+      - fm_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  fm_network:
+    driver: bridge
